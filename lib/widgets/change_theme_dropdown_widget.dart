@@ -14,7 +14,6 @@ class ChangeThemeDropdownWidget extends StatelessWidget {
           value: provider.currentTheme,
           icon: const Icon(
             Icons.arrow_circle_down,
-            color: Colors.white,
           ),
           items: const [
             //Light, dark, and system
