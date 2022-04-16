@@ -54,9 +54,16 @@ class Auth with ChangeNotifier {
   Future autoLogIn() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? passCode = prefs.getString('passCode');
-    if (passCode!.isNotEmpty) {
+
+    final currentDay = DateTime.now().day;
+    final currentMonth = DateTime.now().month;
+    final currentYear = DateTime.now().year;
+
+    final String result = (currentDay * currentMonth * currentYear).toString();
+    if (passCode!.isNotEmpty && passCode == result) {
       _isAuth = true;
     } else {
+      prefs.setString('passCode', '');
       _isAuth = false;
     }
     notifyListeners();
